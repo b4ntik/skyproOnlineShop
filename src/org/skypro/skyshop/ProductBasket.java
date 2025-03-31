@@ -33,14 +33,16 @@ public ProductBasket(String productName, int productPrice ){
     public static int getBasketPrice(ProductBasket[] basket) {
         sumBasket = 0;
         for (ProductBasket price: basket) {
-            sumBasket += price.getBasketPrice();
+            if (price != null) {
+                sumBasket += price.getBasketPrice();
+            }
         }
         return sumBasket;
     }
 
     public static void printBasketComposition(ProductBasket[] basket) {
         for (int i = 0; i < basket.length; i++) {
-            System.out.println(basket[i] );
+            System.out.println(basket[i]);
         }
         System.out.println("Итого: " + getBasketPrice(basket));
     }
@@ -53,7 +55,7 @@ public ProductBasket(String productName, int productPrice ){
     //   return super.equals(obj);
     // }
     //метод очистки корзины
-    public void cleanBasket() {
+    public static void cleanBasket(ProductBasket[] basket) {
         for (int i = 0; i < basket.length; i++) {
             basket[i] = null;
         }

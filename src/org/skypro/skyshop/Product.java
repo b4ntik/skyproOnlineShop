@@ -16,7 +16,9 @@ public class Product {
         this.productName = productName;
         this.productPrice = productPrice;
     }
-
+public int getProduct(){
+        return this.productPrice;
+}
 
 
 }

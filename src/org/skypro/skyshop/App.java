@@ -16,5 +16,8 @@ public class App {
 
 
         ProductBasket.printBasketComposition(basket1);
+        ProductBasket.cleanBasket(basket1);
+        ProductBasket.printBasketComposition(basket1);
+
     }
 }
