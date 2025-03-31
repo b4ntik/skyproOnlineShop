@@ -1,48 +1,66 @@
 package org.skypro.skyshop;
 
 public class ProductBasket {
-    public int[] userBasketProductPrices = new int[5];
-    private String[] userBasketProductNames = new String[5];
-    private int sumBasket;
+
+    private static ProductBasket[] basket = new ProductBasket[5];
+    private static int sumBasket;
+    private String productName;
+    private int productPrice;
 
 
+public ProductBasket(String productName, int productPrice ){
+    this.productName = productName;
+    this.productPrice = productPrice;
+}
     //метод добавления в корзину
-    public void setUserBasket(String productName, int productPrice) {
+    public static void setUserBasket(String productName, int productPrice) {
 
-        for (int i = 0; i < userBasketProductPrices.length; i++){
-            if (userBasketProductPrices[i] == 0){
-                userBasketProductPrices[i] = productPrice;
-                userBasketProductNames[i] = productName;
-            break;
+        for (int i = 0; i < basket.length; i++) {
+            if (basket[i].equals(null)) {
+                basket[i] = new ProductBasket(productName, productPrice);
+                break;
             }
         }
 
     }
-//метод получения корзины
-    public int[] getUserBasket() {
-        return userBasketProductPrices;
+
+    //метод получения корзины
+    public ProductBasket[] getUserBasket() {
+        return basket;
     }
+
     //метод получения стоимости товаров в корзине
-    public int getBasketPrice(int[] basket){
+    public static int getBasketPrice(ProductBasket[] basket) {
         sumBasket = 0;
-for (int i = 0; i< userBasketProductPrices.length; i++){
-    sumBasket += userBasketProductPrices[i];
-}
+        for (ProductBasket price: basket) {
+            sumBasket += price.getBasketPrice();
+        }
         return sumBasket;
     }
-    public void printBasketComposition(){
-        for (int i = 0; i < userBasketProductPrices.length; i++){
-            System.out.println(userBasketProductNames[i] + " : " + userBasketProductPrices[i]);
+
+    public static void printBasketComposition(ProductBasket[] basket) {
+        for (int i = 0; i < basket.length; i++) {
+            System.out.println(basket[i] );
         }
-        System.out.println("Итого: "+ getBasketPrice(userBasketProductPrices));
+        System.out.println("Итого: " + getBasketPrice(basket));
     }
-//метод проверки продукта по имени в корзине
-   // @Override
-   // public boolean equals(Object obj) {
-     //   return super.equals(obj);
-   // }
+    public String toString(){
+        return productName + " : "+ productPrice;
+    }
+    //метод проверки продукта по имени в корзине
+    // @Override
+    // public boolean equals(Object obj) {
+    //   return super.equals(obj);
+    // }
     //метод очистки корзины
-    public int[] cleanBasket (int[] basket){
-        return  basket;
+    public void cleanBasket() {
+        for (int i = 0; i < basket.length; i++) {
+            basket[i] = null;
+        }
     }
-}
+        public int getBasketPrice(){
+            return productPrice;
+        }
+
+    }
+
