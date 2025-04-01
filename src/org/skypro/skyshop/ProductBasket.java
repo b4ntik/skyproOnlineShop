@@ -8,14 +8,17 @@ public class ProductBasket {
     private int productPrice;
 
 
-
     public ProductBasket(String productName, int productPrice) {
         this.productName = productName;
         this.productPrice = productPrice;
     }
 
+    public ProductBasket() {
+
+    }
+
     //метод добавления в корзину
-    public static void setUserBasket(ProductBasket[] basket, String productName, int productPrice) {
+    public void setUserBasket(ProductBasket[] basket, String productName, int productPrice) {
         boolean added = false;
         for (int i = 0; i < basket.length; i++) {
             if (basket[i] == null) {
@@ -25,10 +28,9 @@ public class ProductBasket {
             }
         }
         if (!added) {
-            System.out.println("Корзина полная");
+            System.out.println("Невозможно добавить продукт");
         }
     }
-
 
     //метод получения стоимости товаров в корзине
     public static int getBasketPrice(ProductBasket[] basket) {
@@ -46,13 +48,8 @@ public class ProductBasket {
         return productName;
     }
 
-    //получение стоимости продукта
-    public int getProductPrice() {
-        return productPrice;
-    }
-
     //печать содержимого корзины
-    public static void printBasketComposition(ProductBasket[] basket) {
+    public void printBasketComposition(ProductBasket[] basket) {
         if (basket[0] == null) {
             System.out.println("Корзина пуста");
         } else {
@@ -69,18 +66,19 @@ public class ProductBasket {
     }
 
     //поиск продукта по имени в корзине
-    public static boolean findProduct(ProductBasket[] basket, String product) {
+    public boolean findProduct(ProductBasket[] basket, String product) {
         if (basket != null) {
             for (ProductBasket containProduct : basket) {
-                if (containProduct != null && containProduct.getProductName().equals(product)) ;
-                return true;
+                if (containProduct != null && containProduct.getProductName().equals(product)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     //очистка корзины
-    public static void cleanBasket(ProductBasket[] basket) {
+    public void cleanBasket(ProductBasket[] basket) {
         for (int i = 0; i < basket.length; i++) {
             basket[i] = null;
         }
@@ -90,6 +88,5 @@ public class ProductBasket {
     public int getBasketPrice() {
         return productPrice;
     }
-
 }
 
