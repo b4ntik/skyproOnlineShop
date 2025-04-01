@@ -4,8 +4,10 @@ public class App {
     public static void main(String[] args) {
         Product product1 = new Product();
         Product product2 = new Product();
+        Product product3 = new Product();
         product1.setProduct("Молоко", 100);
         product2.setProduct("Хлеб", 50);
+        product3.setProduct("стол", 500);
         ProductBasket[] basket1 = new ProductBasket[5];
 
         System.out.println(product1.getProductName() + " : " + product1.getProductPrice());
@@ -16,8 +18,13 @@ public class App {
 
 
         ProductBasket.printBasketComposition(basket1);
-        ProductBasket.cleanBasket(basket1);
+        // ProductBasket.cleanBasket(basket1);
         ProductBasket.printBasketComposition(basket1);
-
+        System.out.println(ProductBasket.findProduct(basket1, "Хлеб"));
+        ProductBasket.setUserBasket(basket1, product3.getProductName(), product3.getProductPrice());
+        ProductBasket.setUserBasket(basket1, product3.getProductName(), product3.getProductPrice());
+        ProductBasket.setUserBasket(basket1, product3.getProductName(), product3.getProductPrice());
+        ProductBasket.setUserBasket(basket1, product3.getProductName(), product3.getProductPrice());
+        ProductBasket.printBasketComposition(basket1);
     }
 }
